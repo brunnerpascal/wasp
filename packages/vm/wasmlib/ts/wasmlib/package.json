@@ -3,6 +3,7 @@
   "description": "WasmLib, interface library for ISCP Wasm VM",
   "version": "1.0.0",
   "author": "Eric Hop",
+  "main": "index.ts",
   "dependencies": {
     "@assemblyscript/loader": "^0.19.18"
   },
