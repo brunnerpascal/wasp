@@ -1,0 +1,33 @@
+name: faucet
+description: faucet description
+structs: 
+  AgentState:
+    requests: Int32
+    requestedToken: Int64
+
+typedefs: {}
+state:
+  owner: AgentID // current owner of this smart contract
+  tokenRequests: map[AgentID]AgentState
+funcs:
+  init:
+    params:
+      owner: AgentID? // optional owner of this smart contract
+  setOwner:
+    access: owner // current owner of this smart contract
+    params:
+      owner: AgentID // new owner of this smart contract
+  deposit:
+    params:
+      amount: Int64
+  requestToken:
+    params:
+      amount: Int64
+
+views:
+  getMaxTokenRequests:
+    results:
+      maxTokenRequests: Int64
+  getMaxTokenAmount:
+    results:
+      maxTokenAmount: Int64
