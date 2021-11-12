@@ -7,6 +7,8 @@ import { AgentState } from "./structs";
 
 const MAX_REQUESTS_PER_ADDRESS: i16 = 4;
 const MAX_TOKEN_AMOUNT_PER_REQUEST: i64 = 1 * 1024 * 1024;
+const MAX_TOKEN_PER_ADDRESS: i64 =
+  MAX_TOKEN_AMOUNT_PER_REQUEST * MAX_REQUESTS_PER_ADDRESS;
 
 export function funcInit(ctx: wasmlib.ScFuncContext, f: sc.InitContext): void {
   if (f.params.owner().exists()) {
@@ -57,7 +59,7 @@ export function funcRequestToken(
       );
     }
 
-    if (agent.requestedToken > MAX_TOKEN_AMOUNT_PER_REQUEST) {
+    if (agent.requestedToken + requestedToken > MAX_TOKEN_PER_ADDRESS) {
       ctx.panic(
         `Too many token requested for Agent: ${ctx.caller()} Address: ${ctx
           .caller()
@@ -66,7 +68,7 @@ export function funcRequestToken(
     }
   }
 
-  if (f.params.amount().value() > MAX_TOKEN_AMOUNT_PER_REQUEST) {
+  if (requestedToken > MAX_TOKEN_AMOUNT_PER_REQUEST) {
     ctx.panic(
       `Too many token requested for Agent: ${ctx.caller()} Address: ${ctx
         .caller()
