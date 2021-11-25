@@ -53,6 +53,12 @@ After the build process has finished, you can start your Wasp node by running:
 docker run wasp-node
 ```
 
+For building the wasp-cli use:
+
+```
+docker build -t wasp-cli .
+```
+
 ### Configuration
 
 After the build process has been completed, it is still possible to inject a different configuration file into a new container by running: 
