@@ -53,6 +53,9 @@ After the build process has finished, you can start your Wasp node by running:
 docker run wasp-node
 ```
 
+Note: Add `--network="host"` after `docker run` to make the localhost point to your docker host to access the dashboard via the localhost binding.
+
+
 ### Configuration
 
 After the build process has been completed, it is still possible to inject a different configuration file into a new container by running: 
